@@ -11,7 +11,7 @@ class Loading extends StatefulWidget {
 
 class _LoadingState extends State<Loading> {
   void setupCovidData() async{
-    Country instance;
+    Country instance = new Country();
     await instance.getData(countries[0].name);
     Navigator.pushReplacementNamed(context, "/home",arguments: {
       "cases": instance.cases,
@@ -21,6 +21,7 @@ class _LoadingState extends State<Loading> {
       "recovered": instance.recovered,
       "todayRecovered": instance.todayRecovered,
       "active": instance.active,
+      "flag": instance.flag,
     });
   }
   @override
@@ -60,6 +61,6 @@ class _LoadingState extends State<Loading> {
           ),
         ),
       ),
-    );;
+    );
   }
 }

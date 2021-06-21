@@ -10,8 +10,8 @@ class Choose extends StatefulWidget {
 }
 
 class _ChooseState extends State<Choose> {
-  void countryData(index) async {
-    Country instance;
+  void countryData(int index) async {
+    Country instance = new Country();
     String country = countries[index].name;
     await instance.getData(country);
     Navigator.pop(context,{
@@ -22,6 +22,7 @@ class _ChooseState extends State<Choose> {
       "recovered": instance.recovered,
       "todayRecovered": instance.todayRecovered,
       "active": instance.active,
+      "flag": instance.flag
     });
   }
   @override
