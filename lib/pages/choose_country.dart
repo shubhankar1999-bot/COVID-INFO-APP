@@ -13,7 +13,7 @@ class _ChooseState extends State<Choose> {
   void countryData(index) async {
     Country instance;
     String country = countries[index].name;
-    await instance.getData(index);
+    await instance.getData(country);
     Navigator.pop(context,{
       "cases": instance.cases,
       "todayCases": instance.todayCase,
