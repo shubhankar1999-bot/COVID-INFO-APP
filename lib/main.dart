@@ -9,7 +9,7 @@ void main() =>runApp(MaterialApp(
   routes: {
     "/":(context)=>Loading(),
     "/home":(context)=>Home(),
-    "data":(context)=>Choose(),
+    "/data":(context)=>Choose(),
   },
 ));
-}
+

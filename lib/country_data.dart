@@ -12,7 +12,6 @@ class Country{
   String recovered;
   String todayRecovered;
   String active;
-  Country({this.cases,this.todayCase,this.deaths,this.todayDeaths,this.recovered,this.todayRecovered,this.active});
 
   Future<void> getData(country) async {
     List<String> country_data;

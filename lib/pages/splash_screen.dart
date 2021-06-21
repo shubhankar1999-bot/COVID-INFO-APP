@@ -1,27 +1,33 @@
+import 'package:covid_info/country_data.dart';
 import 'package:covid_info/constants/country.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../country_data.dart';
 class Loading extends StatefulWidget {
-  void setupCovidData() async{
-    Country instance;
-    await instance.getData(countries[0].name);
-    Navigator.pushReplacementNamed(context, "/home",arguments: {
-    "cases": instance.cases,
-    "todayCases": instance.todayCase,
-    "deaths": instance.deaths,
-    "todayDeaths": instance.todayDeaths,
-    "recovered": instance.recovered,
-    "todayRecovered": instance.todayRecovered,
-    "active": instance.active,
-    });
-  }
   @override
   _LoadingState createState() => _LoadingState();
 }
 
 class _LoadingState extends State<Loading> {
+  void setupCovidData() async{
+    Country instance;
+    await instance.getData(countries[0].name);
+    Navigator.pushReplacementNamed(context, "/home",arguments: {
+      "cases": instance.cases,
+      "todayCases": instance.todayCase,
+      "deaths": instance.deaths,
+      "todayDeaths": instance.todayDeaths,
+      "recovered": instance.recovered,
+      "todayRecovered": instance.todayRecovered,
+      "active": instance.active,
+    });
+  }
+  @override
+  void initState(){
+    super.initState();
+    setupCovidData();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
