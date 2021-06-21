@@ -1,9 +1,8 @@
-import 'dart:convert';
 
 import 'package:covid_info/constants/country.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:http/http.dart';
+import 'package:covid_info/country_data.dart';
 
 class Choose extends StatefulWidget {
   @override
@@ -11,16 +10,19 @@ class Choose extends StatefulWidget {
 }
 
 class _ChooseState extends State<Choose> {
-  Future<void> getData(index) async {
+  void countryData(index) async {
+    Country instance;
     String country = countries[index].name;
-    try{
-      Response response=await get("https://corona.lmao.ninja/v2/countries/$country?yesterday&strict&query%20");
-      Map data=jsonDecode(response.body);
-
-    }
-    catch(e){
-      time="COULD NOT GET COUNTRY DATA";
-    }
+    await instance.getData(index);
+    Navigator.pop(context,{
+      "cases": instance.cases,
+      "todayCases": instance.todayCase,
+      "deaths": instance.deaths,
+      "todayDeaths": instance.todayDeaths,
+      "recovered": instance.recovered,
+      "todayRecovered": instance.todayRecovered,
+      "active": instance.active,
+    });
   }
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,7 @@ class _ChooseState extends State<Choose> {
         child: Card(
           child: ListTile(
             onTap: () {
-              getData(index);
+              countryData(index);
             },
             title: Text(countries[index].name),
           ),

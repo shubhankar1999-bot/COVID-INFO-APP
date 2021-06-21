@@ -2,7 +2,7 @@ class Locations {
   final String name;
 
   Locations({
-    this.name;
+    this.name,
   });
 }
 

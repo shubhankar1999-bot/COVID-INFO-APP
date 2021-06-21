@@ -14,15 +14,21 @@ class Country{
   String active;
   Country({this.cases,this.todayCase,this.deaths,this.todayDeaths,this.recovered,this.todayRecovered,this.active});
 
-  Future<void> getData(index) async {
-    String country = countries[index].name;
+  Future<void> getData(country) async {
+    List<String> country_data;
     try{
       Response response=await get("https://corona.lmao.ninja/v2/countries/$country?yesterday&strict&query%20");
       Map data=jsonDecode(response.body);
-
+      cases=data["cases"];
+      todayCase=data["todayCases"];
+      deaths=data["deaths"];
+      todayDeaths=data["todayDeaths"];
+      recovered=data["recovered"];
+      todayRecovered=data["todayRecovered"];
+      active=data["active"];
     }
     catch(e){
-      String data ="COULD NOT GET COUNTRY DATA";
+     cases="COULD NOT GET CASES RELATED TO THIS COUNTRY";
     }
   }
 }
