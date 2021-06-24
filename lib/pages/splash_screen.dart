@@ -13,7 +13,7 @@ class _LoadingState extends State<Loading> {
   void setupCovidData() async{
     Country instance = new Country();
     await instance.getData(countries[0].name);
-    Navigator.pushReplacementNamed(context, "/home",arguments: {
+    Navigator.pushReplacementNamed(context, "/dashboard",arguments: {
       "cases": instance.cases,
       "todayCases": instance.todayCase,
       "deaths": instance.deaths,
